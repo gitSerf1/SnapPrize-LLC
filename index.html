@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MN Sweepstakes Giveaway</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="bg-gradient-to-b from-purple-100 to-white text-gray-800 font-sans">
   <header class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-6 shadow-lg">
@@ -22,40 +23,7 @@
       <p class="text-lg">Win a <span class="font-semibold">$50 Amazon Gift Card</span>! Open to Minnesota residents 18+. Sweepstakes ends <strong>December 31, 2025</strong>.</p>
     </section>
 
-    <!-- Entry Form Section -->
-    <section class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl shadow-lg p-8 border border-pink-200">
-      <h2 class="text-2xl font-semibold text-pink-600 mb-4">📝 Enter the Sweepstakes</h2>
-      <p class="mb-4">Fill out the entry form below. One entry per person. No purchase necessary.</p>
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://docs.google.com/forms/d/1kWZ-YqRnfNZ3qLI_P7zteIu2PwHx6GJgiGYIaSAIJrc/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-      </div>
-    </section>
-
-    <!-- How It Works Section -->
+    <!-- Paid Entry Section -->
     <section class="bg-white rounded-2xl shadow-lg p-8 border border-purple-200">
-      <h2 class="text-2xl font-semibold text-purple-600 mb-4">⚡ How It Works</h2>
-      <ol class="list-decimal pl-6 space-y-2 text-lg">
-        <li>Complete the entry form above or enter by mail.</li>
-        <li>All entries will be collected in our secure system.</li>
-        <li>Winner is randomly drawn at the end of the sweepstakes period.</li>
-        <li>The winner will be notified by email or phone within 5 days.</li>
-      </ol>
-    </section>
-
-    <!-- Official Rules Section -->
-    <section class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl shadow-lg p-8 border border-pink-200">
-      <h2 class="text-2xl font-semibold text-pink-600 mb-4">📜 Official Rules</h2>
-      <p class="mb-2">Open to Minnesota residents aged 18+. No purchase necessary. Void where prohibited. Odds of winning depend on number of entries received.</p>
-      <p class="mb-2">Sponsor: [Your Company Name], [Your City], Minnesota.</p>
-      <p class="mb-2">For full rules, see the official rules page (coming soon).</p>
-    </section>
-  </main>
-
-  <footer class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-6 mt-10">
-    <div class="max-w-4xl mx-auto text-center space-y-2">
-      <p>© 2025 [Your Company Name]. All Rights Reserved.</p>
-      <p class="text-sm">Contact: info@yourcompany.com</p>
-    </div>
-  </footer>
-</body>
-</html>
+      <h2 class="text-2xl font-semibold text-purple-600 mb-4">💳 Pay to Enter</h2>
+      <button id="payButton" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-xl sha
