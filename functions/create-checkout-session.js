@@ -9,7 +9,7 @@ exports.handler = async (event) => {
           price_data: {
             currency: "usd",
             product_data: { name: "Sweepstakes Entry" },
-            unit_amount: 100, // $1
+            unit_amount: 100,
           },
           quantity: 1,
         },
