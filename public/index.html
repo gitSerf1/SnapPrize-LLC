@@ -49,19 +49,18 @@
 </footer>
 
 <script>
-  // LIVE Stripe publishable key
   const stripe = Stripe('pk_live_51SCWyeDOX42glWqQENCroWra4xzVhe8WOilKTLQTqsysGOdMDsf9vbcOGhArZVEEejYaLI6oraoB7thpFUD7Ggbp00Ylyt4Wjk');
 
   document.getElementById('payButton').addEventListener('click', async () => {
     try {
-      const response = await fetch('/.netlify/functions/create-checkout-session', {
+      const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
 
       const session = await response.json();
 
-      if(session.error){
+      if (session.error) {
         alert("Error creating checkout session: " + session.error);
         return;
       }
