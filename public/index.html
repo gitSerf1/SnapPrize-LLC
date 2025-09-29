@@ -9,6 +9,7 @@
 </head>
 <body class="bg-gradient-to-b from-purple-100 to-white text-gray-800 font-sans">
 
+  <!-- Header -->
   <header class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-6 shadow-lg">
     <div class="max-w-5xl mx-auto text-center">
       <h1 class="text-4xl font-bold mb-2">🎉 Minnesota Sweepstakes Giveaway 🎉</h1>
@@ -36,7 +37,7 @@
       </p>
     </section>
 
-    <!-- Free AMOE Section -->
+    <!-- Free Entry Section -->
     <section id="freeAMOE" class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl shadow-lg p-8 border border-pink-200 mt-6">
       <h2 class="text-2xl font-semibold text-pink-600 mb-4">📝 Free Entry Form (AMOE)</h2>
       <p class="mb-4">Use this form to enter without paying. One entry per person.</p>
@@ -45,6 +46,7 @@
 
   </main>
 
+  <!-- Footer -->
   <footer class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-6 mt-10">
     <div class="max-w-4xl mx-auto text-center space-y-2">
       <p>© 2025 [Your Company Name]. All Rights Reserved.</p>
@@ -52,17 +54,30 @@
     </div>
   </footer>
 
+  <!-- Stripe JS -->
   <script>
-    const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY');
+    const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY'); // Replace with your Stripe key
 
-    document.getElementById('payButton').addEventListener('click', () => {
-      fetch('/.netlify/functions/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(res => res.json())
-      .then(data => stripe.redirectToCheckout({ sessionId: data.id }))
-      .catch(err => console.error(err));
+    document.getElementById('payButton').addEventListener('click', async () => {
+      try {
+        const response = await fetch('/.netlify/functions/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        const session = await response.json();
+
+        if(session.error){
+          alert("Error creating checkout session: " + session.error);
+          return;
+        }
+
+        await stripe.redirectToCheckout({ sessionId: session.id });
+
+      } catch (err) {
+        console.error("Stripe error:", err);
+        alert("Payment failed. See console for details.");
+      }
     });
   </script>
 
