@@ -9,7 +9,7 @@ exports.handler = async (event) => {
           price_data: {
             currency: "usd",
             product_data: { name: "Sweepstakes Entry" },
-            unit_amount: 100, // $1 per entry
+            unit_amount: 100, // $1
           },
           quantity: 1,
         },
@@ -25,9 +25,6 @@ exports.handler = async (event) => {
     };
   } catch (err) {
     console.error(err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
-    };
+    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
 };
