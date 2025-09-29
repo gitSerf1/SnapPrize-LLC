@@ -1,4 +1,3 @@
-// Make sure you have set the live secret key in Netlify env: STRIPE_SECRET_KEY
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event) => {
