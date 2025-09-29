@@ -1,6 +1,6 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-exports.handler = async () => {
+exports.handler = async (event) => {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -9,7 +9,7 @@ exports.handler = async () => {
           price_data: {
             currency: "usd",
             product_data: { name: "Sweepstakes Entry" },
-            unit_amount: 100,
+            unit_amount: 100, // $1 per entry
           },
           quantity: 1,
         },
@@ -19,8 +19,15 @@ exports.handler = async () => {
       cancel_url: `${process.env.URL}/index.html`,
     });
 
-    return { statusCode: 200, body: JSON.stringify({ id: session.id }) };
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ id: session.id }),
+    };
   } catch (err) {
-    return { statusCode: 500, body: err.toString() };
+    console.error(err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message }),
+    };
   }
 };
