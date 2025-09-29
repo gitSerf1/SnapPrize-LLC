@@ -1,3 +1,4 @@
+// Make sure you have set the live secret key in Netlify env: STRIPE_SECRET_KEY
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event) => {
@@ -9,14 +10,14 @@ exports.handler = async (event) => {
           price_data: {
             currency: "usd",
             product_data: { name: "Sweepstakes Entry" },
-            unit_amount: 100,
+            unit_amount: 100, // $1
           },
           quantity: 1,
         },
       ],
       mode: "payment",
-      success_url: `${process.env.URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.URL}/index.html`,
+      success_url: `${process.env.SITE_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.SITE_URL}/index.html`,
     });
 
     return {
