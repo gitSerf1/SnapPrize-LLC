@@ -1,6 +1,12 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import Stripe from "stripe";
 
-exports.handler = async (event) => {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -19,12 +25,9 @@ exports.handler = async (event) => {
       cancel_url: `${process.env.SITE_URL}/index.html`,
     });
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ id: session.id }),
-    };
+    res.status(200).json({ id: session.id });
   } catch (err) {
     console.error(err);
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    res.status(500).json({ error: err.message });
   }
-};
+}
