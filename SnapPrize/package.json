@@ -1,8 +1,0 @@
-{
-  "name": "sweepstakes-netlify",
-  "version": "1.0.0",
-  "dependencies": {
-    "stripe": "^12.15.0",
-    "googleapis": "^121.0.0"
-  }
-}
