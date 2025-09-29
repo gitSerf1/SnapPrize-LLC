@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Successful</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 text-gray-800 font-sans p-8">
+  <h1 class="text-3xl font-bold mb-4">Payment Successful! 🎉</h1>
+  <p class="mb-6">Your paid entry is confirmed. Fill out the form below to complete your entry.</p>
+
+  <section id="paidForm" class="bg-white rounded-2xl shadow-lg p-6 border border-green-300">
+    <h2 class="text-2xl font-semibold text-green-600 mb-4">📝 Paid Entry Form</h2>
+    <iframe src="YOUR_PAID_FORM_LINK" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </section>
+
+  <p class="mt-6 text-sm text-gray-600">
+    No purchase necessary. Enter for free by filling out our <a href="index.html#freeAMOE" class="underline text-indigo-600">free entry form</a>.
+  </p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+    if (sessionId) console.log('Stripe session confirmed:', sessionId);
+  </script>
+</body>
+</html>
